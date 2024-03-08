@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+html {
+  font-size: 62.5%;
+  margin-bottom: 7vh;
+}
+
+body {
+  background: radial-gradient(
+    666px at 0.4% 48%,
+    rgb(246, 246, 248) 0%,
+    rgb(255, 255, 255) 97.5%
+  );
+}
+
+.header_div .img {
+  position: relative;
+}
+.header_top {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  gap: 8rem;
+  top: 32px;
+}
+header p {
+  color: #fcfefe;
+  letter-spacing: 2px;
+  font-family: Josefin Sans;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
