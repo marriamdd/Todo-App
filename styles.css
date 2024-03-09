@@ -5,16 +5,12 @@ html {
 }
 
 body {
-  background: radial-gradient(
-    666px at 0.4% 48%,
-    rgb(255, 255, 255) 0%,
-    rgb(255, 255, 255) 97.5%
-  );
+  background: hsl(0, 0%, 98%)
 }
-.header_div{
-    display: flex;
-    flex-direction: column;
-justify-content: center;
+.header_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   justify-content: center;
 }
@@ -39,57 +35,85 @@ header p {
   font-size: 1.5rem;
 }
 
-.header_inpt_container{
+.header_inpt_container {
   position: absolute;
   top: 8rem;
   width: 100%;
   height: 6%;
 
   display: flex;
-  text-align: center; 
+  text-align: center;
   align-items: center;
-   justify-content: center;
+  justify-content: center;
+}
+
+.todo_text_X {
+  padding-left: 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 #text_input_id {
-    position: relative;
-    padding-left: 3.4rem;
-    border-radius: 6px;
-  border: none ;
+
+  padding-left: 3.4rem;
+  border-radius: 6px;
+  border: none;
   width: 60%;
   height: 80%;
-
 }
-.circle{
-    position: absolute;
-   left: 19%;
-    width:18px;
-   background-color:transparent;
-   border: .1rem solid rgb(231, 229, 229);
-   height:18px;
+.circle {
+  position: absolute;
+  left: 19%;
+  width: 18px;
+  background-color: transparent;
+  border: 0.1rem solid rgb(231, 229, 229);
+  height: 18px;
   border-radius: 50%;
   z-index: 9999;
-
-}
-.costum_checkbox {
-  width: 17px;
-  height: 17px;
-  border-radius: 50%;
   cursor: pointer;
 }
+.list_circle {
+  position: absolute;
+  width: 17px;
+  background-color: transparent;
+  border: 0.1rem solid rgb(231, 229, 229);
+  height: 18px;
+  border-radius: 50%;
+  z-index: 9999;
+  cursor: pointer;
+}
+
 .div_for_lists {
   position: absolute;
-  background-color: #fcfefee7;
-  min-width: 83%;
+  background-color: white;
+  width: 73%;
   top: 180px;
-  left: 2rem;
-  border-radius: 6px;
-
+  left: 3.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+font-family: Josefin Sans;
+font-weight: 300;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 .each_todo_div {
+    border: 0.1px solid rgb(231, 229, 229);
   display: flex;
   gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.9rem 1.2rem;
+  cursor: pointer;
+ 
+}
+.close_svg{
+    cursor: pointer; 
+}
+
+.list_last_line{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 100;
+}
+.list_last_line >*{
+    cursor: pointer; 
 }
