@@ -28,12 +28,12 @@ function display() {
     }
     );
 
-console.log(array.length)
+// console.log(array.length)
 
     div_for_lists.innerHTML+=`
     <div class="list_last_line each_todo_div" >
         <span>${array.length} items left </span>
-        <span> Clear completed </span>
+        <span onclick="clear_completed()"  class="clr_completely"> Clear completed </span>
         </div>`
 
         if(array.length==0){
@@ -107,3 +107,11 @@ function delete_task() {
     });
   }
 }
+
+function clear_completed(){
+    const clr_completely=document.querySelector(".clr_completely")
+    clr_completely.addEventListener("click",()=>{
+        localStorage.clear("todo")
+        location.reload()
+    })
+  }
