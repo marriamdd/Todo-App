@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  background: hsl(0, 0%, 98%)
+  background: hsl(0, 0%, 98%);
 }
 .header_div {
   display: flex;
@@ -54,7 +54,6 @@ header p {
   justify-content: space-between;
 }
 #text_input_id {
-
   padding-left: 3.4rem;
   border-radius: 6px;
   border: none;
@@ -86,34 +85,64 @@ header p {
 .div_for_lists {
   position: absolute;
   background-color: white;
-  width: 73%;
+  width: 79%;
   top: 180px;
-  left: 3.5rem;
+  left: 2.5rem;
   border-radius: 8px;
   overflow: hidden;
-font-family: Josefin Sans;
-font-weight: 300;
+  font-family: Josefin Sans;
+  font-weight: 300;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 .each_todo_div {
-    border: 0.1px solid rgb(231, 229, 229);
+  border: 0.1px solid rgb(231, 229, 229);
   display: flex;
   gap: 0.5rem;
   padding: 0.9rem 1.2rem;
   cursor: pointer;
- 
 }
-.close_svg{
-    cursor: pointer; 
+.close_svg {
+  cursor: pointer;
 }
 
-.list_last_line{
-    display: flex;
-    justify-content: space-between;
-    font-weight: 100;
+.list_last_line {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 100;
 }
-.list_last_line >*{
-    cursor: pointer; 
+.list_last_line > * {
+  cursor: pointer;
+}
+.complited_sign {
+  transition: background-color 0s;
+  background-color: aqua;
+}
+
+.nav_bar {
+  position: fixed;
+  width: 90%;
+  height: 2rem;
+  bottom: 60px;
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  margin-left: 1rem;
+  border-radius: 4px;
+  align-items: center;
+}
+.nav_bar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 30px;
+  font-family: Josefin Sans;
+  font-weight: 200;
+}
+.nav_bar ul li:hover {
+  cursor: pointer;
+  color: rgb(18, 18, 192);
+  text-shadow: 4px 1px 4px rgba(22, 36, 223, 1);
 }

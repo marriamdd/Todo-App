@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="reset.css" />
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+
     <link
       rel="icon"
       type="image/png"
@@ -37,14 +37,39 @@
             />
           </svg>
         </div>
+        <div class="header_input_div">
+          <div class="header_inpt_container">
+            
+<div class="circle"></div>
+            <input
+            id="text_input_id"
+              type="text"
+              placeholder="Create a new todo..."/>
+            </div>
+        </div>
       </div>
     </header>
+    <main>
+      <div  class="div_for_lists" data-todo-id="lists">
+    
+      </div >
+      <div class="nav_bar">
+        <nav>
+         <ul>
+          <li>All</li>
+          <li>Active</li>
+          <li>Complated</li>
+         </ul>
+        </nav>
+      </div>
+    
+    </main >
 
-    <div class="attribution">
+    <!-- <div class="attribution">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
         >Frontend Mentor</a
       >. Coded by <a href="#">Marriam.d</a>.
-    </div>
+    </div> -->
   </body>
 </html>
