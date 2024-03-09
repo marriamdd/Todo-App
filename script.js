@@ -5,7 +5,7 @@ let array = [];
 let unicid = 0;
 display();
 add_task();
-
+clear_completed();
 delete_task();
 
 function display() {
@@ -25,40 +25,30 @@ function display() {
       
    
       `;
-    }
-    );
+    });
 
-// console.log(array.length)
+    // console.log(array.length)
 
-    div_for_lists.innerHTML+=`
+    div_for_lists.innerHTML += `
     <div class="list_last_line each_todo_div" >
         <span>${array.length} items left </span>
-        <span onclick="clear_completed()"  class="clr_completely"> Clear completed </span>
-        </div>`
+        <span  class="clr_completely"> Clear completed </span>
+        </div>`;
 
-        if(array.length==0){
-            div_for_lists.innerHTML="" 
-         } 
- 
- }
-
-
+    if (array.length == 0) {
+      div_for_lists.innerHTML = "";
+    }
+  }
 }
 
 function add_task() {
-   
-
   text_input.addEventListener("keyup", (event) => {
- 
     if (event.key === "Enter" && text_input.value) {
-      const list_item_text = document.querySelector(".list_item_text");
-      console.log(text_input.value);
       array.push(text_input.value);
 
       localStorage.setItem("todo", JSON.stringify(array));
 
       unicid++;
-      console.log(unicid)
       div_for_lists.innerHTML += `
      
   
@@ -74,14 +64,11 @@ function add_task() {
       text_input.value = "";
     }
 
-
-   
- if(event.key === "Enter"){
-
-location.reload()
- }})
-
-
+    if (event.key === "Enter") {
+      location.reload();
+    }
+  });
+  complited();
 }
 
 function delete_task() {
@@ -101,17 +88,26 @@ function delete_task() {
           localStorage.setItem("todo", JSON.stringify(array));
 
           console.log(array);
-          location.reload()
+          location.reload();
         }
       });
     });
   }
 }
 
-function clear_completed(){
-    const clr_completely=document.querySelector(".clr_completely")
-    clr_completely.addEventListener("click",()=>{
-        localStorage.clear("todo")
-        location.reload()
-    })
-  }
+function clear_completed() {
+  const clr_completely = document.querySelector(".clr_completely");
+  clr_completely.addEventListener("click", () => {
+    localStorage.clear("todo");
+    location.reload();
+  });
+}
+
+function complited() {
+  const list_circle = Array.from(document.querySelectorAll(".list_circle"));
+  list_circle.map((btn) => {
+    btn.addEventListener("click", (event) => {
+      event.target.classList.toggle("complited_sign");
+    });
+  });
+}
