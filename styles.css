@@ -145,10 +145,22 @@ header p {
   border-radius: 50%;
   background-size: cover;
   border: 0.1rem solid rgb(231, 229, 229);
+  cursor: pointer;
 }
 
 .complited_todo {
   text-decoration: line-through;
+}
+.complited_todo::before {
+  content: url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' width='11' height='9'><path fill='none' stroke='%23FFF' stroke-width='2' d='M1 4.304L3.696 7l6-6'/></svg>");
+  background: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .nav_bar {
   position: fixed;
