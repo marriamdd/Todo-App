@@ -3,8 +3,9 @@ const text_input = document.querySelector("#text_input_id");
 const div_for_lists = document.querySelector(".div_for_lists");
 let array = [];
 let unicid = 0;
-// complited();
+
 display();
+complited()
 dark_mode();
 
 add_task();
@@ -18,7 +19,7 @@ function display() {
     array.forEach((task) => {
       div_for_lists.innerHTML += `
      
-      <div class="each_todo_div"  >
+      <div  class="each_todo_div"  >
    
       <div class="todo_text_X">
       <p class="list_item_text checked">${task}</p>
@@ -28,7 +29,8 @@ function display() {
       </div>
       
    
-      `;
+      `;  
+      
     });
 
     // console.log(array.length)
@@ -56,11 +58,11 @@ function add_task() {
       div_for_lists.innerHTML += `
      
   
-       <div class="each_todo_div" id=${unicid} >
+       <div  class="each_todo_div" id=${unicid} >
      
        <div class="todo_text_X">
        <p class="list_item_text">${text_input.value}</p>
-         <svg class="close_svg" " xmlns="http://www.w3.org/2000/svg"  width="14" height="14" viewBox="0 0 26 26" ><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
+         <svg class="close_svg" xmlns="http://www.w3.org/2000/svg"  width="14" height="14" viewBox="0 0 26 26" ><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
          </div>
        </div>
     
@@ -72,7 +74,6 @@ function add_task() {
       location.reload();
     }
   });
-//   complited();
 }
 
 function delete_task() {
@@ -107,19 +108,17 @@ function clear_completed() {
   });
 }
 
-// function complited() {
-//   const list_circles = Array.from(document.querySelectorAll(".each_todo_div"));
-
-//   list_circles.forEach((btn) => {
-//     btn.addEventListener("click", (event) => {
-     
-//       if (event.target.classList.contains("todo_text_X")) {
-//         event.target.classList.toggle("complited_todo");
-//         console.log("lllj");
-//       }
-//     });
-//   });
-// }
+function complited() {
+    const task = Array.from(document.querySelectorAll(".each_todo_div"));
+  
+   task.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        if (event.target.classList.contains("todo_text_X")) {
+          event.target.classList.toggle("complited_todo");
+        }
+      });
+    });
+  }
 
 function dark_mode() {
   const moon_icon = document.querySelector(".moon_icon");
