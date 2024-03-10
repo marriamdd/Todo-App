@@ -5,7 +5,7 @@ let array = [];
 let unicid = 0;
 let completed_id_array=[];
 const only_dones = [];
-// complited_into_localstorage()
+completed_into_localstorage()
 display();
 complited();
 dark_mode();
@@ -107,39 +107,35 @@ function complited() {
     btn.addEventListener("click", (event) => {
       if (event.target.classList.contains("todo_text_X")) {
         event.target.classList.toggle("complited_todo");
-        let complited_task = event.target;
-        complited_into_localstorage(complited_task);
+        let completed_task= event.target;
+    //   
+        completed_into_localstorage(completed_task);
       }
     });
   });
 }
 
-function complited_into_localstorage(complited_task) {
-  const parent_id = complited_task.closest(".each_todo_div").id;
-  if (!completed_id_array.includes(parent_id)) {
-    completed_id_array.push(parent_id);
-    const setstorage = localStorage.setItem(
-        "complited_id",
-        JSON.stringify( completed_id_array)
-      );
+function completed_into_localstorage(completed_task) {
+
+    if(completed_task){
+        const parentID = completed_task.closest(".each_todo_div").id;
+
+        if (!completed_id_array.includes(parentID)) {
+            completed_id_array.push(parentID);
+        } else {
+            const indexRemove = completed_id_array.indexOf(parentID);
+            if (indexRemove !== -1) {
+                completed_id_array.splice(indexRemove, 1);
+            }
+        }
     
-}else{
-    completed_id_array.splice(parent_id,1);
-    const setstorage = localStorage.setItem(
-        "complited_id",
-        JSON.stringify( completed_id_array)
-      );
+        localStorage.setItem("completed_id", JSON.stringify(completed_id_array));
+      
+        console.log(completed_task);
+    }
+   
 }
 
-
-  const setstorage = localStorage.setItem(
-    "complited_id",
-    JSON.stringify( completed_id_array)
-  );
-
-  console.log(parent_id);
- 
-}
 
 function dark_mode() {
   const moon_icon = document.querySelector(".moon_icon");
