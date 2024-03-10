@@ -4,6 +4,7 @@ const div_for_lists = document.querySelector(".div_for_lists");
 let array = [];
 let unicid = 0;
 display();
+dark_mode();
 add_task();
 clear_completed();
 delete_task();
@@ -109,5 +110,43 @@ function complited() {
     btn.addEventListener("click", (event) => {
       event.target.classList.toggle("complited_sign");
     });
+  });
+}
+
+function dark_mode() {
+  const moon_icon = document.querySelector(".moon_icon");
+  moon_icon.addEventListener("click", () => {
+    moon_icon.classList.toggle("sun_icon");
+    const body_dark_mode = document
+      .querySelector("body")
+      .classList.toggle("body_dark_mode");
+    const each_todo_div_dark = Array.from(
+      document.querySelectorAll(".each_todo_div"),
+      (e) => {
+        e.classList.toggle("dark_container");
+      }
+    );
+    const input_dark = document
+      .getElementById("text_input_id")
+      .classList.toggle("dark_container");
+    const navbar_dark = document
+      .querySelector(".nav_bar")
+      .classList.toggle("dark_container");
+    const dark_circle = document
+      .querySelector(".circle")
+      .classList.toggle("dark_circle");
+    const list_circle = Array.from(
+      document.querySelectorAll(".list_circle"),
+      (e) => {
+        e.classList.toggle("dark_circle");
+      }
+    );
+    const drag_drop_div = document
+      .querySelector(".drag_drop_div")
+      .classList.toggle("drag_drop_dark");
+
+    const header_div = document
+      .querySelector(".header_div")
+      .classList.toggle("header_div_dark");
   });
 }
