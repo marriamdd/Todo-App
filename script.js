@@ -2,8 +2,8 @@ const list_item_text = document.querySelector(".list_item_text");
 const text_input = document.querySelector("#text_input_id");
 const div_for_lists = document.querySelector(".div_for_lists");
 let array = [];
-let unicid= 0;
-let complited_id_array=[]
+let unicid = 0;
+let completed_id_array=[];
 const only_dones = [];
 // complited_into_localstorage()
 display();
@@ -19,8 +19,8 @@ function display() {
   if (localStorage.getItem("todo")) {
     array = JSON.parse(localStorage.getItem("todo"));
 
-    array.forEach((task,indx) => {
-        unicid++
+    array.forEach((task, indx) => {
+      unicid++;
 
       div_for_lists.innerHTML += `
      
@@ -58,7 +58,6 @@ function add_task() {
 
       localStorage.setItem("todo", JSON.stringify(array));
 
-    
       text_input.value = "";
     }
 
@@ -85,7 +84,7 @@ function delete_task() {
           localStorage.setItem("todo", JSON.stringify(array));
 
           console.log(array);
-         
+
           location.reload();
         }
       });
@@ -108,22 +107,28 @@ function complited() {
     btn.addEventListener("click", (event) => {
       if (event.target.classList.contains("todo_text_X")) {
         event.target.classList.toggle("complited_todo");
-       let complited_task= event.target
-        complited_into_localstorage(complited_task)
+        let complited_task = event.target;
+        complited_into_localstorage(complited_task);
       }
-    })
     });
+  });
 }
 
 function complited_into_localstorage(complited_task) {
-  const parent_id=complited_task.closest(".each_todo_div").id
+  const parent_id = complited_task.closest(".each_todo_div").id;
+  if (!completed_id_array.includes(parent_id)) {
+    completed_id_array.push(parent_id);
+}
 
-  complited_id_array.push(parent_id)
-  const storage=JSON.parse(localStorage.getItem("complited_id"))||[]
 
-  const setstorage=localStorage.setItem("complited_id",JSON.stringify(complited_id_array))
+  const setstorage = localStorage.setItem(
+    "complited_id",
+    JSON.stringify( completed_id_array)
+  );
 
   console.log(parent_id);
+  //   const storage=JSON.parse(localStorage.getItem("complited_id"))||[]
+  //   console.log(storage);
 }
 
 function dark_mode() {
