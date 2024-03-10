@@ -118,6 +118,17 @@ function complited_into_localstorage(complited_task) {
   const parent_id = complited_task.closest(".each_todo_div").id;
   if (!completed_id_array.includes(parent_id)) {
     completed_id_array.push(parent_id);
+    const setstorage = localStorage.setItem(
+        "complited_id",
+        JSON.stringify( completed_id_array)
+      );
+    
+}else{
+    completed_id_array.splice(parent_id,1);
+    const setstorage = localStorage.setItem(
+        "complited_id",
+        JSON.stringify( completed_id_array)
+      );
 }
 
 
@@ -127,8 +138,7 @@ function complited_into_localstorage(complited_task) {
   );
 
   console.log(parent_id);
-  //   const storage=JSON.parse(localStorage.getItem("complited_id"))||[]
-  //   console.log(storage);
+ 
 }
 
 function dark_mode() {
