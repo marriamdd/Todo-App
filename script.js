@@ -2,7 +2,7 @@ const list_item_text = document.querySelector(".list_item_text");
 const text_input = document.querySelector("#text_input_id");
 const div_for_lists = document.querySelector(".div_for_lists");
 let array = [];
-
+let num = 0;
 let classs = "";
 // let completed = localStorage.getItem("completed_id") || [];
 let tame = JSON.parse(localStorage.getItem("mode")) || [];
@@ -60,14 +60,27 @@ function display() {
     }
   }
 }
-function add_task() {
+// click();
+// function click() {
+//   text_input.addEventListener("keyup", (event) => {
+//     if (event.key === "Enter" && text_input.value) {
+//       num++;
+//       add_task(num);
+//       console.log("kj")
+//      display()
+//     }
+//   });
+// }
+
+function add_task(num) {
   text_input.addEventListener("keyup", (event) => {
     if (event.key === "Enter" && text_input.value) {
-      array.push({ task: text_input.value, completed: false });
+      array.push({ task: text_input.value, completed: false});
 
       localStorage.setItem("all_todo", JSON.stringify(array));
 
       text_input.value = "";
+     
     }
 
     if (event.key === "Enter") {
@@ -75,6 +88,11 @@ function add_task() {
     }
   });
 }
+
+// while(add_task){
+//     num++
+// }
+
 
 function delete_task() {
   const close = Array.from(document.querySelectorAll(".close_svg"));
@@ -124,13 +142,13 @@ function complited() {
 function completed_into_localstorage(parent_id) {
   completed_id_array = JSON.parse(localStorage.getItem("completed_id")) || [];
   array = JSON.parse(localStorage.getItem("all_todo"));
-  console.log(array[parent_id].completed);
 
   if (array[parent_id].completed == false) {
     array[parent_id].completed = true;
   } else {
     array[parent_id].completed = false;
   }
+ 
   localStorage.setItem("all_todo", JSON.stringify(array));
 }
 
@@ -182,6 +200,7 @@ function completed_task() {
     .getElementById("compl_task")
     .addEventListener("click", display_complated);
 }
+let ar = [];
 function display_active() {
   array = JSON.parse(localStorage.getItem("all_todo"));
   const filtered = array.filter((e) => e.completed === false);
@@ -190,6 +209,11 @@ function display_active() {
     "active_task",
     JSON.stringify(filtered)
   );
+let completeds=Array.from(document.querySelectorAll(".complited_todo"))
+completeds.forEach(todo=>{
+    todo.closest(".each_todo_div").style.display="none"
+
+})
 }
 
 function display_complated() {
