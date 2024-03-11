@@ -2,11 +2,13 @@ const list_item_text = document.querySelector(".list_item_text");
 const text_input = document.querySelector("#text_input_id");
 const div_for_lists = document.querySelector(".div_for_lists");
 let array = [];
-let completed_id_array = [];
+
 let classs = "";
-let completed = localStorage.getItem("completed_id") || [];
+// let completed = localStorage.getItem("completed_id") || [];
 let tame = JSON.parse(localStorage.getItem("mode")) || [];
 const moon_icon = document.querySelector(".moon_icon");
+completed_task();
+active_task();
 display();
 complited();
 dark_mode();
@@ -14,15 +16,14 @@ add_task();
 clear_completed();
 delete_task();
 if (tame.mode == "dark") {
-  console.log(tame);
   change_mode();
 }
 
 function display() {
   complited();
 
-  if (localStorage.getItem("todo")) {
-    array = JSON.parse(localStorage.getItem("todo"));
+  if (localStorage.getItem("all_todo")) {
+    array = JSON.parse(localStorage.getItem("all_todo"));
 
     array.forEach((task, indx) => {
       if (task.completed) {
@@ -64,7 +65,7 @@ function add_task() {
     if (event.key === "Enter" && text_input.value) {
       array.push({ task: text_input.value, completed: false });
 
-      localStorage.setItem("todo", JSON.stringify(array));
+      localStorage.setItem("all_todo", JSON.stringify(array));
 
       text_input.value = "";
     }
@@ -84,10 +85,10 @@ function delete_task() {
         if (parent) {
           const parent_id = parent.id;
           parent.remove();
-          array = JSON.parse(localStorage.getItem("todo"));
+          array = JSON.parse(localStorage.getItem("all_todo"));
 
           array.splice(parent_id, 1);
-          localStorage.setItem("todo", JSON.stringify(array));
+          localStorage.setItem("all_todo", JSON.stringify(array));
           location.reload();
         }
       });
@@ -96,10 +97,12 @@ function delete_task() {
 }
 function clear_completed() {
   const clr_completely = document.querySelector(".clr_completely");
-  clr_completely.addEventListener("click", () => {
-    localStorage.clear("todo");
-    location.reload();
-  });
+  if (clr_completely) {
+    clr_completely.addEventListener("click", () => {
+      localStorage.clear("all_todo");
+      location.reload();
+    });
+  }
 }
 
 function complited() {
@@ -120,7 +123,7 @@ function complited() {
 
 function completed_into_localstorage(parent_id) {
   completed_id_array = JSON.parse(localStorage.getItem("completed_id")) || [];
-  array = JSON.parse(localStorage.getItem("todo"));
+  array = JSON.parse(localStorage.getItem("all_todo"));
   console.log(array[parent_id].completed);
 
   if (array[parent_id].completed == false) {
@@ -128,7 +131,7 @@ function completed_into_localstorage(parent_id) {
   } else {
     array[parent_id].completed = false;
   }
-  localStorage.setItem("todo", JSON.stringify(array));
+  localStorage.setItem("all_todo", JSON.stringify(array));
 }
 
 function dark_mode() {
@@ -151,18 +154,11 @@ function change_mode() {
   const input_dark = document
     .getElementById("text_input_id")
     .classList.toggle("dark_container");
-  const navbar_dark = document
-    .querySelector(".nav_bar")
-    .classList.toggle("dark_container");
-  const dark_circle = document
-    .querySelector(".circle")
-    .classList.toggle("dark_circle");
-  const list_circle = Array.from(
-    document.querySelectorAll(".list_circle"),
-    (e) => {
-      e.classList.toggle("dark_circle");
-    }
-  );
+  document.querySelector(".nav_bar").classList.toggle("dark_container");
+  document.querySelector(".circle").classList.toggle("dark_circle");
+  Array.from(document.querySelectorAll(".list_circle"), (e) => {
+    e.classList.toggle("dark_circle");
+  });
   document.querySelector(".drag_drop_div").classList.toggle("drag_drop_dark");
   document.querySelector(".header_div").classList.toggle("header_div_dark");
 }
@@ -174,4 +170,36 @@ function mode() {
   } else {
     localStorage.setItem("mode", JSON.stringify({ mode: "light" }));
   }
+}
+
+function active_task() {
+  document
+    .getElementById("active_task")
+    .addEventListener("click", display_active);
+}
+function completed_task() {
+  document
+    .getElementById("compl_task")
+    .addEventListener("click", display_complated);
+}
+function display_active() {
+  array = JSON.parse(localStorage.getItem("all_todo"));
+  const filtered = array.filter((e) => e.completed === false);
+
+  const active_LS = localStorage.setItem(
+    "active_task",
+    JSON.stringify(filtered)
+  );
+}
+
+function display_complated() {
+  array = JSON.parse(localStorage.getItem("all_todo"));
+  const filtered = array.filter((e) => e.completed === true);
+  const completed_LS = localStorage.setItem(
+    "completed_task",
+    JSON.stringify(filtered)
+  );
+
+  console.log(filtered);
+  console.log(array[0]);
 }
