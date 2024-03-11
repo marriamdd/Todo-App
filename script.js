@@ -5,13 +5,18 @@ let array = [];
 let completed_id_array = [];
 let classs = "";
 let completed = localStorage.getItem("completed_id") || [];
+let tame = JSON.parse(localStorage.getItem("mode")) || [];
+const moon_icon = document.querySelector(".moon_icon");
 display();
 complited();
 dark_mode();
-
 add_task();
 clear_completed();
 delete_task();
+if (tame.mode == "dark") {
+  console.log(tame);
+  change_mode();
+}
 
 function display() {
   complited();
@@ -46,6 +51,8 @@ function display() {
         <span>${array.length} items left </span>
         <span  class="clr_completely"> Clear completed </span>
         </div>`;
+
+    const mode = JSON.parse(localStorage.getItem("mode"));
 
     if (array.length == 0) {
       div_for_lists.innerHTML = "";
@@ -125,39 +132,46 @@ function completed_into_localstorage(parent_id) {
 }
 
 function dark_mode() {
-  const moon_icon = document.querySelector(".moon_icon");
-  moon_icon.addEventListener("click", () => {
-    moon_icon.classList.toggle("sun_icon");
-    const body_dark_mode = document
-      .querySelector("body")
-      .classList.toggle("body_dark_mode");
-    const each_todo_div_dark = Array.from(
-      document.querySelectorAll(".each_todo_div"),
-      (e) => {
-        e.classList.toggle("dark_container");
-      }
-    );
-    const input_dark = document
-      .getElementById("text_input_id")
-      .classList.toggle("dark_container");
-    const navbar_dark = document
-      .querySelector(".nav_bar")
-      .classList.toggle("dark_container");
-    const dark_circle = document
-      .querySelector(".circle")
-      .classList.toggle("dark_circle");
-    const list_circle = Array.from(
-      document.querySelectorAll(".list_circle"),
-      (e) => {
-        e.classList.toggle("dark_circle");
-      }
-    );
-    const drag_drop_div = document
-      .querySelector(".drag_drop_div")
-      .classList.toggle("drag_drop_dark");
+  moon_icon.addEventListener("click", change_mode);
+}
 
-    const header_div = document
-      .querySelector(".header_div")
-      .classList.toggle("header_div_dark");
-  });
+function change_mode() {
+  moon_icon.classList.toggle("sun_icon");
+  mode();
+
+  const body_dark_mode = document
+    .querySelector("body")
+    .classList.toggle("body_dark_mode");
+  const each_todo_div_dark = Array.from(
+    document.querySelectorAll(".each_todo_div"),
+    (e) => {
+      e.classList.toggle("dark_container");
+    }
+  );
+  const input_dark = document
+    .getElementById("text_input_id")
+    .classList.toggle("dark_container");
+  const navbar_dark = document
+    .querySelector(".nav_bar")
+    .classList.toggle("dark_container");
+  const dark_circle = document
+    .querySelector(".circle")
+    .classList.toggle("dark_circle");
+  const list_circle = Array.from(
+    document.querySelectorAll(".list_circle"),
+    (e) => {
+      e.classList.toggle("dark_circle");
+    }
+  );
+  document.querySelector(".drag_drop_div").classList.toggle("drag_drop_dark");
+  document.querySelector(".header_div").classList.toggle("header_div_dark");
+}
+
+function mode() {
+  const mode = document.getElementById("mode");
+  if (mode.classList.contains("sun_icon")) {
+    localStorage.setItem("mode", JSON.stringify({ mode: "dark" }));
+  } else {
+    localStorage.setItem("mode", JSON.stringify({ mode: "light" }));
+  }
 }
