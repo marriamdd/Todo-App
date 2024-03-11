@@ -75,12 +75,11 @@ function display() {
 function add_task(num) {
   text_input.addEventListener("keyup", (event) => {
     if (event.key === "Enter" && text_input.value) {
-      array.push({ task: text_input.value, completed: false});
+      array.push({ task: text_input.value, completed: false });
 
       localStorage.setItem("all_todo", JSON.stringify(array));
 
       text_input.value = "";
-     
     }
 
     if (event.key === "Enter") {
@@ -92,7 +91,6 @@ function add_task(num) {
 // while(add_task){
 //     num++
 // }
-
 
 function delete_task() {
   const close = Array.from(document.querySelectorAll(".close_svg"));
@@ -148,7 +146,7 @@ function completed_into_localstorage(parent_id) {
   } else {
     array[parent_id].completed = false;
   }
- 
+
   localStorage.setItem("all_todo", JSON.stringify(array));
 }
 
@@ -209,11 +207,10 @@ function display_active() {
     "active_task",
     JSON.stringify(filtered)
   );
-let completeds=Array.from(document.querySelectorAll(".complited_todo"))
-completeds.forEach(todo=>{
-    todo.closest(".each_todo_div").style.display="none"
-
-})
+  let completeds = Array.from(document.querySelectorAll(".complited_todo"));
+  completeds.forEach((todo) => {
+    todo.closest(".each_todo_div").style.display = "none";
+  });
 }
 
 function display_complated() {
@@ -223,7 +220,10 @@ function display_complated() {
     "completed_task",
     JSON.stringify(filtered)
   );
-
-  console.log(filtered);
-  console.log(array[0]);
+  let each_todo = Array.from(document.querySelectorAll(".todo_text_X"));
+  each_todo.forEach((todo) => {
+    if (!todo.classList.contains("complited_todo")) {
+      todo.closest(".each_todo_div").style.display = "none";
+    }
+  });
 }
