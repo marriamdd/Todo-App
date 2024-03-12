@@ -79,27 +79,18 @@ header p {
   width: 60%;
   height: 6vh;
 }
-.circle {
+.header_inpt_container::before{
+  content: "";
   position: absolute;
-  left: 19%;
-  width: 18px;
-  background-color: transparent;
-  border: 0.1rem solid rgb(231, 229, 229);
-  height: 18px;
+  height: 20px;
+  width: 20px;
+  left: 7.5rem;
   border-radius: 50%;
-  z-index: 9999;
-  cursor: pointer;
-}
-.list_circle {
-  position: absolute;
-  width: 17px;
+  background-size: cover;
+  border: 0.1rem solid rgb(198, 197, 197);
 
-  border: 0.1rem solid rgb(231, 229, 229);
-  height: 18px;
-  border-radius: 50%;
-  z-index: 9999;
-  cursor: pointer;
 }
+
 
 .div_for_lists {
   position: absolute;
@@ -218,4 +209,12 @@ header p {
 }
 .header_div_dark {
   background-image: url("images/bg-mobile-dark.jpg");
+}
+
+@media only screen and (min-width: 768px) {
+
+#text_input_id{
+  max-width: 540px; ;
+}
+
 }
