@@ -23,12 +23,12 @@
         <div class="header_top">
           <p>T O D O</p>
 
-       <div  class="moon_icon "></div>
+       <div id="mode" class="moon_icon "></div>
       
         </div>
         <div class="header_input_div">
           <div class="header_inpt_container">
-            <div class="circle"></div>
+         
             <input
               id="text_input_id"
               type="text"
@@ -39,17 +39,17 @@
       </div>
     </header>
     <main>
-      <div class="div_for_lists" data-todo-id="lists"></div>
-      <div class="nav_bar">
+      <div class="div_for_lists" data-todo-id="lists">
+      <div class="nav_bar each_todo_div ">
         <nav>
           <ul>
-            <li>All</li>
-            <li>Active</li>
-            <li>Complated</li>
+            <li id="all_task">All</li>
+            <li id="active_task">Active</li>
+            <li id="compl_task">Complated</li>
           </ul>
         </nav>
       </div>
-
+    </div>
       <div class="drag_drop_div">
         <h5>Drag and drop to reorder list</h5>
       </div>
