@@ -79,7 +79,7 @@ header p {
   width: 60%;
   height: 6vh;
 }
-.header_inpt_container::before{
+.header_inpt_container::before {
   content: "";
   position: absolute;
   height: 20px;
@@ -88,9 +88,7 @@ header p {
   border-radius: 50%;
   background-size: cover;
   border: 0.1rem solid rgb(198, 197, 197);
-
 }
-
 
 .div_for_lists {
   position: absolute;
@@ -106,12 +104,19 @@ header p {
   flex-direction: column;
   text-align: center;
 }
-.each_todo_div {
+.each_todo_div,
+.nav_bar {
   border: 0.1px solid rgb(231, 229, 229);
   display: flex;
   gap: 0.5rem;
   padding: 0.9rem 1.2rem;
   cursor: pointer;
+}
+.nav_bar {
+  margin-top: 1rem;
+  order: 2;
+  display: flex;
+  justify-content: space-between;
 }
 .close_svg {
   cursor: pointer;
@@ -154,16 +159,15 @@ header p {
   justify-content: center;
 }
 .nav_bar {
-  position: fixed;
-  width: 90%;
-  height: 6vh;
-  bottom: 60px;
-  display: flex;
+  /* width: 90%;
+  height: 6vh; */
+
+  /* display: flex;
   background-color: white;
   justify-content: center;
   margin-left: 1rem;
   border-radius: 4px;
-  align-items: center;
+  align-items: center; */
 }
 .nav_bar ul {
   list-style: none;
@@ -212,9 +216,11 @@ header p {
 }
 
 @media only screen and (min-width: 768px) {
-
-#text_input_id{
-  max-width: 540px; ;
-}
-
+  #text_input_id {
+    max-width: 540px;
+  }
+  .div_for_lists {
+    max-width: 540px;
+    margin-left: 4.7rem;
+  }
 }
