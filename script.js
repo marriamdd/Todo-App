@@ -15,6 +15,8 @@ dark_mode();
 add_task();
 clear_completed();
 delete_task();
+all_task();
+
 if (tame.mode == "dark") {
   change_mode();
 }
@@ -188,6 +190,10 @@ function mode() {
   }
 }
 
+function all_task() {
+  document.getElementById("all_task").addEventListener("click", display_all);
+}
+
 function active_task() {
   document
     .getElementById("active_task")
@@ -198,6 +204,10 @@ function completed_task() {
     .getElementById("compl_task")
     .addEventListener("click", display_complated);
 }
+let func_run=false
+
+
+
 let ar = [];
 function display_active() {
   array = JSON.parse(localStorage.getItem("all_todo"));
@@ -224,6 +234,18 @@ function display_complated() {
   each_todo.forEach((todo) => {
     if (!todo.classList.contains("complited_todo")) {
       todo.closest(".each_todo_div").style.display = "none";
+    }
+  });
+}
+
+function display_all() {
+  let each_todo = Array.from(document.querySelectorAll(".each_todo_div"));
+  array = JSON.parse(localStorage.getItem("all_todo")) || [];
+  array.forEach((todo, index) => {
+    let div = each_todo[index]
+   
+    if (div.style.display=="none") {
+      div.style.display = "block";
     }
   });
 }
