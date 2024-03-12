@@ -220,7 +220,16 @@ function display_active() {
   let completeds = Array.from(document.querySelectorAll(".complited_todo"));
   completeds.forEach((todo) => {
     todo.closest(".each_todo_div").style.display = "none";
+    
+    
   });
+let todos=Array.from(document.querySelectorAll(".todo_text_X"))
+todos.forEach((task)=>{
+ if(!task.classList.contains("complited_todo")){
+  task.closest(".each_todo_div").style.display="block"
+ }
+})
+
 }
 
 function display_complated() {
@@ -234,6 +243,9 @@ function display_complated() {
   each_todo.forEach((todo) => {
     if (!todo.classList.contains("complited_todo")) {
       todo.closest(".each_todo_div").style.display = "none";
+    }
+    if (todo.classList.contains("complited_todo")) {
+      todo.closest(".each_todo_div").style.display = "block";
     }
   });
 }
