@@ -172,11 +172,7 @@ function change_mode() {
   const input_dark = document
     .getElementById("text_input_id")
     .classList.toggle("dark_container");
-  document.querySelector(".nav_bar").classList.toggle("dark_container");
-  document.querySelector(".circle").classList.toggle("dark_circle");
-  Array.from(document.querySelectorAll(".list_circle"), (e) => {
-    e.classList.toggle("dark_circle");
-  });
+ 
   document.querySelector(".drag_drop_div").classList.toggle("drag_drop_dark");
   document.querySelector(".header_div").classList.toggle("header_div_dark");
 }
@@ -204,9 +200,7 @@ function completed_task() {
     .getElementById("compl_task")
     .addEventListener("click", display_complated);
 }
-let func_run=false
-
-
+let func_run = false;
 
 let ar = [];
 function display_active() {
@@ -220,16 +214,13 @@ function display_active() {
   let completeds = Array.from(document.querySelectorAll(".complited_todo"));
   completeds.forEach((todo) => {
     todo.closest(".each_todo_div").style.display = "none";
-    
-    
   });
-let todos=Array.from(document.querySelectorAll(".todo_text_X"))
-todos.forEach((task)=>{
- if(!task.classList.contains("complited_todo")){
-  task.closest(".each_todo_div").style.display="block"
- }
-})
-
+  let todos = Array.from(document.querySelectorAll(".todo_text_X"));
+  todos.forEach((task) => {
+    if (!task.classList.contains("complited_todo")) {
+      task.closest(".each_todo_div").style.display = "block";
+    }
+  });
 }
 
 function display_complated() {
@@ -254,10 +245,11 @@ function display_all() {
   let each_todo = Array.from(document.querySelectorAll(".each_todo_div"));
   array = JSON.parse(localStorage.getItem("all_todo")) || [];
   array.forEach((todo, index) => {
-    let div = each_todo[index]
-   
-    if (div.style.display=="none") {
+    let div = each_todo[index];
+
+    if (div.style.display == "none") {
       div.style.display = "block";
     }
   });
 }
+
