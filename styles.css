@@ -262,4 +262,10 @@ header p {
   .desktop_nav ul li {
     flex: 1;
   }
+  .header_div{
+    background-image: url("images/bg-desktop-light.jpg");
+  }
+  .header_div_dark{
+    background-image: url("images/bg-desktop-dark.jpg");
+  }
 }
