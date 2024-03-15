@@ -7,11 +7,13 @@ let classs = "";
 let tame = JSON.parse(localStorage.getItem("mode")) || [];
 const moon_icon = document.querySelector(".moon_icon");
 display();
-let executed=false
+let desk = false;
 function resize() {
   let window_size = document.body.clientWidth;
-  if (window_size > 768 && !executed) { 
+  if (window_size > 768 && !desk) {
+  
     document.querySelector(".nav_bar").style.display = "none";
+    document.querySelector(".list_last_line").style.display = "none";
     div_for_lists.innerHTML += `
     <div class="list_last_line each_todo_div" >
         <span>${array.length} items left </span>
@@ -24,22 +26,23 @@ function resize() {
         </nav>
         <span class="clr_completely"> Clear completed </span>
     </div>`;
+    clear_completed();
     all_task();
     active_task();
     completed_task();
-
+    complited();
+   
+    delete_task();
+    
     window.removeEventListener("resize", resize);
-    executed = true; 
+    desk = true;
   } else {
     document.querySelector(".nav_bar").style.display = "flex";
+    desk = false;
   }
 }
 
 window.addEventListener("resize", resize);
-
-
-
-
 
 complited();
 dark_mode();
@@ -53,8 +56,6 @@ delete_task();
 if (tame.mode == "dark") {
   change_mode();
 }
-
-
 
 function display() {
   if (localStorage.getItem("all_todo")) {
@@ -82,11 +83,11 @@ function display() {
       `;
     });
 
-    // div_for_lists.innerHTML += `
-    // <div class="list_last_line each_todo_div" >
-    //     <span>${array.length} items left </span>
-    //     <span  class="clr_completely"> Clear completed </span>
-    //     </div>`;
+    div_for_lists.innerHTML += `
+    <div class="list_last_line each_todo_div" >
+        <span>${array.length} items left </span>
+        <span  class="clr_completely"> Clear completed </span>
+        </div>`;
 
     const mode = JSON.parse(localStorage.getItem("mode"));
 
