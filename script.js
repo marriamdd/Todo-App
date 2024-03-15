@@ -4,26 +4,59 @@ const div_for_lists = document.querySelector(".div_for_lists");
 let array = [];
 let num = 0;
 let classs = "";
-// let completed = localStorage.getItem("completed_id") || [];
 let tame = JSON.parse(localStorage.getItem("mode")) || [];
 const moon_icon = document.querySelector(".moon_icon");
-completed_task();
-active_task();
 display();
+let executed=false
+function resize() {
+  let window_size = document.body.clientWidth;
+  if (window_size > 768 && !executed) { 
+    document.querySelector(".nav_bar").style.display = "none";
+    div_for_lists.innerHTML += `
+    <div class="list_last_line each_todo_div" >
+        <span>${array.length} items left </span>
+        <nav class="desktop_nav">
+          <ul>
+            <li id="all_task">All</li>
+            <li id="active_task">Active</li>
+            <li id="compl_task">Completed</li>
+          </ul>
+        </nav>
+        <span class="clr_completely"> Clear completed </span>
+    </div>`;
+    all_task();
+    active_task();
+    completed_task();
+
+    window.removeEventListener("resize", resize);
+    executed = true; 
+  } else {
+    document.querySelector(".nav_bar").style.display = "flex";
+  }
+}
+
+window.addEventListener("resize", resize);
+
+
+
+
+
 complited();
 dark_mode();
 add_task();
 clear_completed();
-delete_task();
 all_task();
+active_task();
+completed_task();
+delete_task();
 
 if (tame.mode == "dark") {
   change_mode();
 }
 
-function display() {
-  complited();
 
+
+function display() {
   if (localStorage.getItem("all_todo")) {
     array = JSON.parse(localStorage.getItem("all_todo"));
 
@@ -49,11 +82,11 @@ function display() {
       `;
     });
 
-    div_for_lists.innerHTML += `
-    <div class="list_last_line each_todo_div" >
-        <span>${array.length} items left </span>
-        <span  class="clr_completely"> Clear completed </span>
-        </div>`;
+    // div_for_lists.innerHTML += `
+    // <div class="list_last_line each_todo_div" >
+    //     <span>${array.length} items left </span>
+    //     <span  class="clr_completely"> Clear completed </span>
+    //     </div>`;
 
     const mode = JSON.parse(localStorage.getItem("mode"));
 
@@ -62,17 +95,6 @@ function display() {
     }
   }
 }
-// click();
-// function click() {
-//   text_input.addEventListener("keyup", (event) => {
-//     if (event.key === "Enter" && text_input.value) {
-//       num++;
-//       add_task(num);
-//       console.log("kj")
-//      display()
-//     }
-//   });
-// }
 
 function add_task(num) {
   text_input.addEventListener("keyup", (event) => {
@@ -89,10 +111,6 @@ function add_task(num) {
     }
   });
 }
-
-// while(add_task){
-//     num++
-// }
 
 function delete_task() {
   const close = Array.from(document.querySelectorAll(".close_svg"));
@@ -172,7 +190,7 @@ function change_mode() {
   const input_dark = document
     .getElementById("text_input_id")
     .classList.toggle("dark_container");
- 
+
   document.querySelector(".drag_drop_div").classList.toggle("drag_drop_dark");
   document.querySelector(".header_div").classList.toggle("header_div_dark");
 }
@@ -191,19 +209,19 @@ function all_task() {
 }
 
 function active_task() {
-  document
-    .getElementById("active_task")
-    .addEventListener("click", display_active);
+  document.getElementById("active_task").addEventListener("click", () => {
+    display_activ();
+  });
 }
 function completed_task() {
   document
     .getElementById("compl_task")
     .addEventListener("click", display_complated);
 }
-let func_run = false;
 
 let ar = [];
-function display_active() {
+function display_activ() {
+  console.log("kjk");
   array = JSON.parse(localStorage.getItem("all_todo"));
   const filtered = array.filter((e) => e.completed === false);
 
@@ -219,6 +237,7 @@ function display_active() {
   todos.forEach((task) => {
     if (!task.classList.contains("complited_todo")) {
       task.closest(".each_todo_div").style.display = "block";
+      console.log("mmm");
     }
   });
 }
@@ -253,3 +272,13 @@ function display_all() {
   });
 }
 
+// let window_size = document.body.clientWidth;
+// if (window_size > 768) {
+//   let nav = document.querySelector(".nav_bar");
+//   let new_nav=nav.cloneNode(true)
+//    nav.style.display="none"
+//   let list_container = document.querySelector(".div_for_lists");
+//   new_nav.classList.add("desktop_nav")
+//   list_container .append(new_nav)
+
+// }
