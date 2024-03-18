@@ -6,15 +6,14 @@ let num = 0;
 let classs = "";
 let tame = JSON.parse(localStorage.getItem("mode")) || [];
 const moon_icon = document.querySelector(".moon_icon");
+
 display();
-let desk = false;
-function resize() {
-  let window_size = document.body.clientWidth;
-  if (window_size > 768 && !desk) {
-  
-    document.querySelector(".nav_bar").style.display = "none";
-    document.querySelector(".list_last_line").style.display = "none";
-    div_for_lists.innerHTML += `
+let window_size = document.body.clientWidth;
+
+if (window_size > 768) {
+  document.querySelector(".nav_bar").style.display = "none";
+
+  div_for_lists.innerHTML += `
     <div class="list_last_line each_todo_div" >
         <span>${array.length} items left </span>
         <nav class="desktop_nav">
@@ -26,20 +25,17 @@ function resize() {
         </nav>
         <span class="clr_completely"> Clear completed </span>
     </div>`;
-    clear_completed();
-    all_task();
-    active_task();
-    completed_task();
-    complited();
-   
-    delete_task();
-    
-    window.removeEventListener("resize", resize);
-    desk = true;
-  } else {
-    document.querySelector(".nav_bar").style.display = "flex";
-    desk = false;
-  }
+} else {
+  document.querySelector(".nav_bar").style.display = "flex";
+  div_for_lists.innerHTML += `
+  <div class="list_last_line each_todo_div" >
+      <span>${array.length} items left </span>
+      <span  class="clr_completely"> Clear completed </span>
+      </div>`;
+}
+
+function resize() {
+  location.reload();
 }
 
 window.addEventListener("resize", resize);
@@ -82,12 +78,6 @@ function display() {
    
       `;
     });
-
-    div_for_lists.innerHTML += `
-    <div class="list_last_line each_todo_div" >
-        <span>${array.length} items left </span>
-        <span  class="clr_completely"> Clear completed </span>
-        </div>`;
 
     const mode = JSON.parse(localStorage.getItem("mode"));
 
@@ -138,6 +128,7 @@ function clear_completed() {
     clr_completely.addEventListener("click", () => {
       localStorage.clear("all_todo");
       location.reload();
+  
     });
   }
 }
@@ -238,7 +229,7 @@ function display_activ() {
   todos.forEach((task) => {
     if (!task.classList.contains("complited_todo")) {
       task.closest(".each_todo_div").style.display = "block";
-      console.log("mmm");
+  
     }
   });
 }
@@ -263,6 +254,7 @@ function display_complated() {
 
 function display_all() {
   let each_todo = Array.from(document.querySelectorAll(".each_todo_div"));
+
   array = JSON.parse(localStorage.getItem("all_todo")) || [];
   array.forEach((todo, index) => {
     let div = each_todo[index];
@@ -272,14 +264,3 @@ function display_all() {
     }
   });
 }
-
-// let window_size = document.body.clientWidth;
-// if (window_size > 768) {
-//   let nav = document.querySelector(".nav_bar");
-//   let new_nav=nav.cloneNode(true)
-//    nav.style.display="none"
-//   let list_container = document.querySelector(".div_for_lists");
-//   new_nav.classList.add("desktop_nav")
-//   list_container .append(new_nav)
-
-// }
